@@ -15,11 +15,11 @@ image_config: &image_config
 
   LINUX_VERSION: UBUNTU_XENIAL 
 
-  # RUBY_VERSION_NUM: # pick a version from https://cache.ruby-lang.org/pub/ruby
+  # RUBY_VERSION_NUM: yes
 
-  # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
+  # NODE_VERSION_NUM: yes
 
-  # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
+  # PYTHON_VERSION_NUM: yes
 
   JAVA: true
 
@@ -63,8 +63,8 @@ jobs:
 
       - run:
           name: start Xvfb for phantomjs test
-          # command: Xvfb :99
-          # background: true
+          # # command: Xvfb :99
+          # # background: true
 
       - run:
           name: bats tests
