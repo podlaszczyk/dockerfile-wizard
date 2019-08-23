@@ -21,7 +21,7 @@ image_config: &image_config
 
   # PYTHON_VERSION_NUM: yes
 
-  JAVA: true
+  JAVA: false
 
   MYSQL_CLIENT: false
 
