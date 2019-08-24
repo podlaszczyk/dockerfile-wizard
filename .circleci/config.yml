@@ -41,6 +41,38 @@ jobs:
     steps:
       - checkout
 
+
+      - run:
+          name: Installing git
+          command: 'apt-get update && apt-get install -y git-core'
+     
+      - run: 
+          name: Downloading submodules
+          command: 'git submodule init && git submodule update --remote'
+     
+      - run:                                                                   
+          name: Installing apt-add-repository
+          command: 'apt-get update && apt install -y software-properties-common'
+
+      - run:                                                                   
+          name: Installing SUDO
+          command: 'apt-get update && apt install -y sudo && rm -rf /var/lib/apt/lists'
+
+      - run:                                                                   
+          name: Installing GCC
+          command: 'apt-get update && apt-get install -y gcc g++'
+
+      - run:                                                  
+          name: Installing CMAKE
+          command: 'apt-get update && apt-get install -y cmake'
+
+      - run:                                                  
+          name: Installing OpenGL
+          command: 'apt-get update && apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
+
+
+
+
       - run: bash scripts/generate.sh > Dockerfile
 
       - run:
@@ -76,35 +108,6 @@ jobs:
             bats scripts/tests.bats | \
             perl scripts/tap-to-junit.sh > \
             test_results/bats/results.xml
-
-      - run:
-          name: Installing git
-          command: 'apt-get update && apt-get install -y git-core'
-     
-      - run: 
-          name: Downloading submodules
-          command: 'git submodule init && git submodule update --remote'
-     
-      - run:                                                                   
-          name: Installing apt-add-repository
-          command: 'apt-get update && apt install -y software-properties-common'
-
-      - run:                                                                   
-          name: Installing SUDO
-          command: 'apt-get update && apt install -y sudo && rm -rf /var/lib/apt/lists'
-
-      - run:                                                                   
-          name: Installing GCC
-          command: 'apt-get update && apt-get install -y gcc g++'
-
-      - run:                                                  
-          name: Installing CMAKE
-          command: 'apt-get update && apt-get install -y cmake'
-
-      - run:                                                  
-          name: Installing OpenGL
-          command: 'apt-get update && apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
-
 
       - store_test_results:
           path: test_results
