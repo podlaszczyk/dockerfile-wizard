@@ -13,7 +13,7 @@ image_config: &image_config
   # make sure you also add the values of your IMAGE_NAME & IMAGE_TAG variables
   # to the `test_image` job (line 55)
 
-  LINUX_VERSION: ubuntu:18.04 
+  LINUX_VERSION: hwdp 
 
   # RUBY_VERSION_NUM: yes
 
