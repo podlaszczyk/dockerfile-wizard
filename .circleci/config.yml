@@ -48,7 +48,7 @@ jobs:
      
       - run: 
           name: Downloading submodules
-          command: 'sudo git submodule init && git submodule update --remote'
+          command: 'git submodule init && git submodule update --remote'
      
       - run:                                                                   
           name: Installing apt-add-repository
@@ -56,7 +56,7 @@ jobs:
 
       - run:                                                                   
           name: Installing SUDO
-          command: 'sudo apt-get update && apt install -y sudo && rm -rf /var/lib/apt/lists'
+          command: 'sudo apt-get update && sudo apt install -y sudo && sudo rm -rf /var/lib/apt/lists'
 
       - run:                                                                   
           name: Installing GCC
@@ -68,7 +68,7 @@ jobs:
 
       - run:                                                  
           name: Installing OpenGL
-          command: 'apt-get update && apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
+          command: 'sudo apt-get update && sudo  apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
 
 
 
