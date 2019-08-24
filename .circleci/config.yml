@@ -106,12 +106,6 @@ jobs:
           command: 'apt-get update && apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
 
 
-
-
-
-
-
-
       - store_test_results:
           path: test_results
 
