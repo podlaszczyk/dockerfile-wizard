@@ -70,8 +70,49 @@ jobs:
           name: Installing OpenGL
           command: 'sudo apt-get update && sudo  apt-get install -y libglu1-mesa-dev mesa-common-dev libglew-dev'
 
+      - run:
+          name: Installing Freetype, GLM
+          command: 'sudo apt-get update && sudo apt-get install -y libfreetype6-dev libglm-dev'
 
+      - run:
+          name: Installing GLFW
+          command: 'sudo apt-get update && sudo apt-get install -y libglfw3-dev'
 
+     - run:
+          name: Installing TinyXML-2
+          command: 'sudo apt-get update && sudo apt-get install -y libtinyxml2-dev'      
+     - run:
+          name: Install Qt 5.12.1
+          command: 'add-apt-repository ppa:beineri/opt-qt-5.12.1.-bionic && sudo apt-get update && sudo apt-get install -y qt512-meta-minimal qtbase5-dev'
+
+     - run:
+          name: Sourcing
+          command: 'opt/qt512/bin/qt512-env.sh'
+
+     - run:
+          name: Exporting path
+          command: 'export PATH=$PATH:/opt/qt512/bin/ && echo $PATH'
+
+     - run:
+          name: Configuring project for standard build
+          command: 'sudo mkdir build && cd build sudo cmake .. -DBUILD_FOR_EDITOR=ON _DUSE_CONTEXT_GUARD=ON '
+
+     - run:
+          name: Building ALL
+          command: 'cd build && make all -j 8'
+
+     - run:
+          name: Configure project for install
+          command: 'sudo mkdir install-build && cd install-build && sudo cmake ../src/engine -DINSTALL_BUILD=ON'
+
+     - run:
+          name: Install
+          command: 'cd install-build && sudo cmake --build . --target.install'
+
+     - run:
+          name: Running tests
+          command: 'cd build && make runAllTests'     
+                  
 
       - run: bash scripts/generate.sh > Dockerfile
 
