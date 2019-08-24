@@ -41,7 +41,6 @@ jobs:
     steps:
       - checkout
 
-
       - run:
           name: Installing git
           command: 'sudo apt-get update && sudo apt-get install -y git-core'
@@ -114,19 +113,20 @@ jobs:
           command: 'cd build && make runAllTests'     
                   
 
-      - run: bash scripts/generate.sh > Dockerfile
+     - run: bash scripts/generate.sh > Dockerfile
 
-      - run:
-             name:"login and pass":
-             command: echo ${DOCKER_USERNAME} echo {DOCKER_PASSWORD}           
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+     - run:
+           name:"login and pass":
+           command: echo ${DOCKER_USERNAME} echo {DOCKER_PASSWORD}           
 
-      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+     - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
 
-      - store_artifacts:
-          path: Dockerfile
+     - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+
+     - store_artifacts:
+         path: Dockerfile
 
   test_image:
     docker:
