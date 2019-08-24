@@ -44,7 +44,7 @@ jobs:
 
       - run:
           name: Installing git
-          command: 'apt-get update && apt-get install -y git-core'
+          command: 'sudo apt-get update && apt-get install -y git-core'
      
       - run: 
           name: Downloading submodules
