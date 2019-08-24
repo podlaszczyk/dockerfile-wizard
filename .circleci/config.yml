@@ -75,7 +75,7 @@ jobs:
 
       - run:
           name: Installing GLFW
-          command: 'sudo apt-get update && sudo apt-get install -y libglfw3-dev'
+          command: ' wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && sudo apt-get update && sudo apt-get install -y libglfw3-dev'
 
       - run:
           name: Installing TinyXML-2
